@@ -123,7 +123,7 @@ class TodoForm extends Component {
               <option>high</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn bg-dark text-white">
             Save Task
           </button>
         </form>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './css/App.css';
 // data
 import { todos } from './todos.json';
@@ -53,7 +53,7 @@ class App extends Component {
     const todos = this.state.todos.map((todo, i) => {
       return (
         <div className="col-md-4" key={i}>
-          <div className="card mt-4 border-0">
+          <div className="card mt-4">
             <div className={"card-header text-center bg-"+this.returnPriorityColor(todo.priority)+" text-white"}>
               <h4>{todo.title}</h4>
               <span className={"badge badge-pill badge-light ml-2"}>

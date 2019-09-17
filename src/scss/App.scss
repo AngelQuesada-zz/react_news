@@ -1,7 +1,8 @@
+@import 'colores';
+@import 'efectos';
+
 .App {
-  background: #bdc3c7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background:$blanco;
   height: 100%;
   min-height:2000px;
 }
@@ -12,29 +13,30 @@
 
 .navbar{
   justify-content:left;
+  background-color: $gris_oscuro;
 
   ul{
     padding-bottom:0;
   }
 
   .task-number{
-    color:#343A40;
-    background:#61DAFB;
+    color: $gris_oscuro;
+    background: $azul_claro;
     font-weight:bold;
     padding:.4rem 1rem;
     border-radius:7px;
   }
 }
 
+.card {
+  @include elemento_sombreado;
+}
+
 .task-form {
-  
-  .card {
-    border-width:0!important;
-  }
 
   .card-header{
-    background:#343A40;
-    color:#61DAFB;
+    background:$gris_oscuro;
+    color:$azul_claro;
     font-weight:bold;
   }
 }
