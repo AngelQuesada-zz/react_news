@@ -1,0 +1,47 @@
+.App {
+  background: #bdc3c7;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100%;
+  min-height: 2000px; }
+
+.App-logo {
+  height: 43px; }
+
+.navbar {
+  justify-content: left; }
+  .navbar ul {
+    padding-bottom: 0; }
+  .navbar .task-number {
+    color: #343A40;
+    background: #61DAFB;
+    font-weight: bold;
+    padding: .4rem 1rem;
+    border-radius: 7px; }
+
+.task-form .card {
+  border-width: 0 !important; }
+.task-form .card-header {
+  background: #343A40;
+  color: #61DAFB;
+  font-weight: bold; }
+
+.fa-icon::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  left: .7rem;
+  position: relative; }
+
+.fa-icon.fa-delete::after {
+  content: "\f2ed"; }
+
+.fa-icon.fa-done::after {
+  content: "\f058"; }
+
+/*# sourceMappingURL=App.css.map */

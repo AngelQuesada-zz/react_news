@@ -7,39 +7,36 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 5s linear;
   height: 43px;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .navbar{
   justify-content:left;
+
+  ul{
+    padding-bottom:0;
+  }
+
+  .task-number{
+    color:#343A40;
+    background:#61DAFB;
+    font-weight:bold;
+    padding:.4rem 1rem;
+    border-radius:7px;
+  }
 }
 
-.navbar ul{
-  padding-bottom:0;
-}
+.task-form {
+  
+  .card {
+    border-width:0!important;
+  }
 
-.navbar .task-number{
-  color:#343A40;
-  background:#61DAFB;
-  font-weight:bold;
-  padding:.4rem 1rem;
-  border-radius:7px;
-}
-
-.task-form.card {
-  border-width:0!important;
-}
-
-.task-form .card-header{
-  background:#343A40;
-  color:#61DAFB;
-  font-weight:bold;
+  .card-header{
+    background:#343A40;
+    color:#61DAFB;
+    font-weight:bold;
+  }
 }
 
 .fa-icon::after{
