@@ -52,9 +52,9 @@ class App extends Component {
   render() {
     const todos = this.state.todos.map((todo, i) => {
       return (
-        <div className="col-md-4" key={i}>
-          <div className="card mt-4">
-            <div className={"card-header text-center bg-"+this.returnPriorityColor(todo.priority)+" text-white"}>
+        <div className="col-md-12" key={i}>
+          <div className="card new_card mt-4">
+            <div className={"card-header text-center bg-dark text-white"}>
               <h4>{todo.title}</h4>
               <span className={"badge badge-pill badge-light ml-2"}>
                 {todo.priority}
@@ -65,14 +65,14 @@ class App extends Component {
             </div>
             <div className="card-footer">
               <button
-                className="btn btn-danger btn btn-block fa-icon fa-delete"
-                onClick={this.removeTodo.bind(this, i)}>
-                Delete
+                className="btn btn-success btn float-left fa-icon fa-goto"
+                onClick={this.doTodo.bind(this, i)}>
+                Ir a la noticia
               </button>
               <button
-                className="btn btn-success btn btn-block fa-icon fa-done"
-                onClick={this.doTodo.bind(this, i)}>
-                Done
+                className="btn btn-danger btn float-left fa-icon fa-delete"
+                onClick={this.removeTodo.bind(this, i)}>
+                No me interesa
               </button>
             </div>
           </div>
@@ -90,7 +90,7 @@ class App extends Component {
           </a>
             <ul className="task-number mb-0" style={{listStyleType: "none"}}>
               <li>
-                Tasks
+                Noticias en pantalla
                 <span className="badge badge-pill badge-dark ml-2">
                   {this.state.todos.length}
                 </span>
@@ -101,7 +101,7 @@ class App extends Component {
         <div className="container">
           <div className="row mt-4">
           
-            <div className="col-md-4 text-center">
+            <div className="col-md-4 text-center mt-4">
               <TodoForm onAddTodo={this.handleAddTodo}></TodoForm>
             </div>
 

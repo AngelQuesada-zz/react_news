@@ -1,0 +1,24 @@
+
+.card.new_card{
+    @include elemento_sombreado;
+
+    button{
+        padding-right:10px;
+    }
+
+    button.fa-delete {
+        margin-left:1rem;
+    }
+
+    .fa-icon.fa-delete::after {
+        content: "\f2ed";
+        margin-right: 10px;
+    }
+    
+    .fa-icon.fa-goto::after {
+        content: "\f530";
+        margin-right: 10px;
+    }
+      
+}
+

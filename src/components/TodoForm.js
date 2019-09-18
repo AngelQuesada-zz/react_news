@@ -76,9 +76,9 @@ class TodoForm extends Component {
 
   render() {
     return (
-      <div className="card task-form">
+      <div className="card news-form">
         <div className='card-header'>
-          Add a new task
+          Busca tus noticias
         </div>
         <form onSubmit={this.handleSubmit} className="card-body">
           <div className="form-group">
@@ -123,8 +123,8 @@ class TodoForm extends Component {
               <option>high</option>
             </select>
           </div>
-          <button type="submit" className="btn bg-dark text-white">
-            Save Task
+          <button type="submit" className="btn bg-dark text-white fa-icon fa-search">
+            Buscar noticias
           </button>
         </form>
       </div>
