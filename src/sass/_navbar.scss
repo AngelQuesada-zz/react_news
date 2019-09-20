@@ -1,0 +1,61 @@
+.navbar {
+  display: flex;
+  background-color: $white;
+  padding: 1rem;
+  height: 75px;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  border-bottom: 3px solid $dark;
+
+  .navbar-brand {
+    margin: 0 auto;
+  }
+
+  .App-logo {
+    height: 40px;
+  }
+
+  .App-logo.large {
+    @include for-phone-only {
+      display: none;
+    }
+  }
+
+  .App-logo.small {
+    display: none;
+
+    @include for-phone-only {
+      display: inline;
+    }
+  }
+
+  #menu-button {
+    float: left;
+    border: 1px solid grey;
+    width: 30px;
+    height: 20px;
+    color: $dark;
+    background: $white;
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    margin-left: 1rem;
+  }
+
+  #menu-button:hover {
+    color: $white;
+    background: $dark;
+  }
+
+  .fa-icon#menu-button::after {
+    content: "\f0c9";
+    left: auto;
+  }
+}

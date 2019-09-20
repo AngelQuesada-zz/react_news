@@ -1,0 +1,135 @@
+.news-item-container {
+    float: left;
+    height: 400px;
+
+    @include for-phone-only {
+        width: 100%;
+        margin: 1rem 0 1rem 0;
+    }
+
+    @include for-tablet-portrait-up {
+        width: 100%;
+        margin: 1rem 0rem 1rem 0rem;
+    }
+
+    @include for-tablet-landscape-up {
+        width: 50%;
+        margin: 1rem 0 1rem 0;
+        padding: 1rem;
+    }
+
+    @include for-desktop-up {
+        width: 30%;
+        margin: 1.5%;
+        padding: 0rem;
+    }
+
+    .news-item {
+        height: 100%;
+        background: $white;
+        position: relative;
+        border-radius: 3px;
+
+        &:hover .header {
+            background-size: 140%;
+            transition: all .3s ease;
+        }
+
+        .header {
+            height: 60%;
+            background: #bfc4c2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-size: 110%;
+
+            .title {
+                background: rgba(52, 58, 64, 0.692);
+                color: white;
+                width: 100%;
+                font-size: 1.3rem;
+                padding: 1rem 1rem;
+
+                .subtitle-container {
+
+                    margin-top: 5px;
+
+                    .author {
+                        font-size: 0.8rem;
+                        float: left;
+                    }
+
+                    .source {
+                        float: right;
+                        margin-top: 1rem;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+
+        .body {
+            .description {
+                padding: 1rem;
+                height: 25%;
+            }
+        }
+
+        .footer {
+            height: 15%;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: .5rem;
+            border-top: 1px solid #80808050;
+            background: $white;
+            z-index: 1;
+
+            .btn-go-news {
+                width: 100%;
+                display: block;
+                background-color: $dark;
+                color: $white;
+                text-align: center;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                border-radius: 3px;
+                text-decoration: none;
+                transition: all .3s ease-out;
+                position: relative;
+                height: 35px;
+            }
+
+            .btn-go-news:hover {
+                padding-right: 20px;
+                margin-right: 10px;
+            }
+
+            .fa-icon.fa-link::after {
+                content: "\f0c1";
+                left: unset;
+                opacity: 0;
+                transition: all .3s ease-in;
+            }
+
+            .fa-icon.fa-link:hover::after {
+                opacity: 1;
+                margin-left: 20px;
+            }
+        }
+
+        button {
+            padding-right: 10px;
+        }
+
+        .fa-icon.fa-goto::after {
+            content: "\f530";
+            margin-right: 10px;
+        }
+
+    }
+
+}

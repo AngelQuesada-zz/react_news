@@ -1,0 +1,14 @@
+#sidebar {
+    width: 30%;
+    max-width: 400px;
+    min-width: 300px;
+    position: fixed;
+    padding: 1.5rem;
+    background: $white;
+    height: calc(100% - 75px);
+    z-index: 2;
+    top: 0;
+    transition: all .3s ease-in-out;
+    margin-top: 75px;
+    overflow-y: auto;
+}

@@ -1,120 +1,256 @@
-import React, { Component } from 'react';
-import logo from './logo.png';
+import React, {
+  Component
+} from 'react';
+// Images
+import logo from './media/images/bs_logo.svg';
+import logo_horizontal from './media/images/bs_logo_horizontal.svg';
+// CSS
 import './css/App.css';
-// data
-import { todos } from './todos.json';
+// JS
+import './js/custom'
 // subcomponents
-import TodoForm from './components/TodoForm';
+import SourcesForm from './components/SourcesForm';
+import SourcesList from './components/SourcesList';
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      todos
+      sources: [],
+      news: [],
+      selected_language: "",
+      selected_source: "",
+      first_load: true,
+      close_sidebar: true,
+      loadingDataFromSourcesForm: false,
     }
-    this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleDataFromSourcesForm = this.handleDataFromSourcesForm.bind(this);
+    this.handleDataFromSourcesList = this.handleDataFromSourcesList.bind(this);
+    this.getNewsFromSource = this.getNewsFromSource.bind(this);
+    this.truncateString = this.truncateString.bind(this);
+    this.addThreeDots = this.addThreeDots.bind(this);
+    this.closeSidebar = this.closeSidebar.bind(this);
   }
 
-  removeTodo(index) {
+  async handleDataFromSourcesForm(data) {
     this.setState({
-      todos: this.state.todos.filter((e, i) => {
-        return i !== index
+      loadingDataFromSourcesForm: true
+    })
+    this.getSourcesFromUrl(data.category, data.language).then((sources) => {
+      this.setState({
+        selected_category: data.category,
+        selected_language: data.language,
+        sources: sources,
+        close_sidebar: false,
+        loadingDataFromSourcesForm: false
       })
-    });
-  }
-
-  handleAddTodo(todo) {
-    this.setState({
-      todos: [...this.state.todos, todo]
     })
+
   }
 
-  returnPriorityColor(priority) {
-    switch (priority) {
-      case "low":
-        return ("success")
-      case "medium":
-        return ("warning")
-      case "high":
-        return ("danger")
-      default:
-        return ("success")
+  async handleDataFromSourcesList(source) {
+    this.getNewsFromSource(source, this.state.selected_language)
+      .then((news) => {
+        this.setState({
+          news: news,
+          close_sidebar: true,
+          first_load: false,
+          selected_source: source
+        })
+      })
+  }
+
+  closeSidebar() {
+    const sidebar = document.getElementById('sidebar')
+    if (sidebar.classList.contains("show")) {
+      const menu_button = document.getElementById('menu-button')
+      menu_button.click()
     }
+    this.setState({
+      close_sidebar: false
+    })
   }
 
-  doTodo(index) {
-    this.setState({
-      
-    })
+  truncateString(str, n_words) {
+    if (str.split(" ").length > n_words) {
+      return this.addThreeDots(str.split(" ").splice(0, n_words).join(" "))
+    }
+    return false
+  }
+
+  addThreeDots(str) {
+    return str + " [...]"
+  }
+
+  async getSourcesFromUrl(category, language) {
+
+    const apikey = "1884b8edb96c4d66885c7c6c52481459"
+
+    const url = "https://newsapi.org/v2/sources?" +
+      "language=" + language + "&" +
+      "category=" + category + "&" +
+      "apiKey=" + apikey
+
+    var req = new Request(url)
+    const response = await fetch(req)
+    const json = await response.json()
+
+    return json.sources
+
+  }
+
+  async getNewsFromSource(source, language) {
+    const apikey = "1884b8edb96c4d66885c7c6c52481459"
+
+    const url = "https://newsapi.org/v2/everything?" +
+      "sources=" + source + "&" +
+      "language=" + language + "&" +
+      "pageSize=10&" +
+      "apiKey=" + apikey
+
+    var req = new Request(url)
+    const response = await fetch(req)
+    const json = await response.json()
+
+    return json.articles
   }
 
   render() {
-    const todos = this.state.todos.map((todo, i) => {
-      return (
-        <div className="col-md-12" key={i}>
-          <div className="card new_card mt-4">
-            <div className={"card-header text-center bg-dark text-white"}>
-              <h4>{todo.title}</h4>
-              <span className={"badge badge-pill badge-light ml-2"}>
-                {todo.priority}
-              </span>
-            </div>
-            <div className="card-body">
-              {todo.description}
-            </div>
-            <div className="card-footer">
-              <button
-                className="btn btn-success btn float-left fa-icon fa-goto"
-                onClick={this.doTodo.bind(this, i)}>
-                Ir a la noticia
-              </button>
-              <button
-                className="btn btn-danger btn float-left fa-icon fa-delete"
-                onClick={this.removeTodo.bind(this, i)}>
-                No me interesa
-              </button>
-            </div>
-          </div>
-        </div>
-      )
-    });
 
-    // RETURN THE COMPONENT
-    return (
-      <div className="App">
+    let news = []
 
-        <nav className="navbar navbar-dark bg-dark">
-          <a className="navbar-brand" href="/">
-              <img src={logo} className="App-logo" alt="logo" />
-          </a>
-            <ul className="task-number mb-0" style={{listStyleType: "none"}}>
-              <li>
-                Noticias en pantalla
-                <span className="badge badge-pill badge-dark ml-2">
-                  {this.state.todos.length}
-                </span>
-              </li>
-            </ul>
-        </nav>
+    if (this.state.news.length > 0) {
 
-        <div className="container">
-          <div className="row mt-4">
-          
-            <div className="col-md-4 text-center mt-4">
-              <TodoForm onAddTodo={this.handleAddTodo}></TodoForm>
-            </div>
+      // If the state close_sidebar is true it will be closed
+      if (this.state.close_sidebar) {
+        this.closeSidebar()
+      }
 
-            <div className="col-md-8">
-              <div className="row">
-                {todos}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      //Here I create all the "news" items
+      news = this.state.news.map((NewsItem, i) => {
+        return ( <
+          div className = "news-item-container"
+          key = {
+            i
+          } >
+          <
+          div className = "news-item" >
+          <
+          div style = {
+            {
+              backgroundImage: "url(" + NewsItem.urlToImage + ")"
+            }
+          }
+          className = "header" >
+          <
+          div className = "title" > {
+            NewsItem.title
+          } <
+          div className = "subtitle-container" >
+          <
+          span className = "author" > {
+            NewsItem.author
+          } <
+          /span> <
+          span className = "source" > {
+            NewsItem.source.name
+          } <
+          /span> <
+          /div> <
+          /div> <
+          /div> <
+          div className = "body" >
+          <
+          div className = "description" > {
+            this.truncateString(NewsItem.description, 25) ?
+            this.truncateString(NewsItem.description, 25) : NewsItem.description
+          } <
+          /div> <
+          /div> <
+          div className = "footer" >
+          <
+          a className = "btn-go-news fa-icon fa-link"
+          href = {
+            NewsItem.url
+          }
+          target = "_blank" >
+          Bring me there!
+          <
+          /a> <
+          /div> <
+          /div> <
+          /div>
+        )
+      });
+
+    } else {
+
+      news = < div className = "no-news" > {
+          this.state.first_load ? "Choose a language and a category" : "No news available"
+        } <
+        /div>
+    }
+
+
+    return ( <
+      div className = "App" >
+
+      <
+      nav className = "navbar" >
+      <
+      div id = "menu-button"
+      className = "fa-icon" > < /div> <
+      a className = "navbar-brand"
+      href = "/" >
+      <
+      img src = {
+        logo_horizontal
+      }
+      className = "App-logo large"
+      alt = "logo" / >
+      <
+      img src = {
+        logo
+      }
+      className = "App-logo small"
+      alt = "logo" / >
+      <
+      /a> <
+      /nav>
+
+      <
+      div id = "sidebar"
+      className = "show" >
+      <
+      SourcesForm loading = {
+        this.state.loadingDataFromSourcesForm
+      }
+      sendDataToApp = {
+        this.handleDataFromSourcesForm
+      } >
+      <
+      /SourcesForm> <
+      SourcesList sendDataToApp = {
+        this.handleDataFromSourcesList
+      }
+      sources = {
+        this.state.sources
+      } >
+      <
+      /SourcesList> <
+      /div> <
+      div className = "container" >
+      <
+      div className = "news" > {
+        news
+      } <
+      /div> <
+      /div> <
+      /div>
     );
   }
+
 }
 
 export default App;

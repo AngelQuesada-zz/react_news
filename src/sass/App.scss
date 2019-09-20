@@ -1,0 +1,70 @@
+@import 'colores';
+@import 'others';
+@import 'navbar';
+@import 'sources_form';
+@import 'sources_list';
+@import 'news_item';
+@import 'sidebar';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+html {
+  background: $dark;
+  background: linear-gradient(90deg, $dark 0%, $dark-degraded 63%);
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  margin-top: 130px;
+
+  @include for-phone-only {
+    margin-top: 80px;
+  }
+}
+
+.no-news {
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 2.5rem;
+}
+
+.fa-icon::before,
+.fa-icon::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa-icon::after {
+  left: .7rem;
+  position: relative;
+}
+
+.fa-icon::before {
+  display: none;
+}
+
+// Tricks
+
+.no-transition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}

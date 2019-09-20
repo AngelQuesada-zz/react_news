@@ -23,3 +23,7 @@ yarn-error.log*
 # sass 
 
 src/.sass-cache
+
+# editors
+
+/vscode
