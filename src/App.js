@@ -129,125 +129,76 @@ class App extends Component {
 
       //Here I create all the "news" items
       news = this.state.news.map((NewsItem, i) => {
-        return ( <
-          div className = "news-item-container"
-          key = {
-            i
-          } >
-          <
-          div className = "news-item" >
-          <
-          div style = {
+        return ( 
+        <div className = "news-item-container"key = {i} >
+          <div className = "news-item" >
+          <div style = {
             {
               backgroundImage: "url(" + NewsItem.urlToImage + ")"
             }
           }
           className = "header" >
-          <
-          div className = "title" > {
+          <div className = "title" > {
             NewsItem.title
-          } <
-          div className = "subtitle-container" >
-          <
-          span className = "author" > {
+          } <div className = "subtitle-container" >
+          <span className = "author" > {
             NewsItem.author
-          } <
-          /span> <
-          span className = "source" > {
+          } </span> <span className = "source" > {
             NewsItem.source.name
-          } <
-          /span> <
-          /div> <
-          /div> <
-          /div> <
-          div className = "body" >
-          <
-          div className = "description" > {
+          } </span> 
+          </div> 
+          </div> 
+          </div> 
+          <div className = "body" >
+          <div className = "description" > {
             this.truncateString(NewsItem.description, 25) ?
             this.truncateString(NewsItem.description, 25) : NewsItem.description
-          } <
-          /div> <
-          /div> <
-          div className = "footer" >
-          <
-          a className = "btn-go-news fa-icon fa-link"
-          href = {
-            NewsItem.url
-          }
-          target = "_blank" >
+          } </div> </div> <div className = "footer" >
+          <a className = "btn-go-news fa-icon fa-link" href = {NewsItem.url}target = "_blank" >
           Bring me there!
-          <
-          /a> <
-          /div> <
-          /div> <
-          /div>
+          </a> </div> </div> </div>
         )
       });
 
     } else {
 
-      news = < div className = "no-news" > {
+      news = <div className = "no-news" >
+         {
           this.state.first_load ? "Choose a language and a category" : "No news available"
-        } <
-        /div>
-    }
+          } 
+        </div>
+    
+  }
 
 
-    return ( <
-      div className = "App" >
+    return ( 
+    <div className = "App" >
+      <nav className = "navbar" >
+        <div id = "menu-button" className = "fa-icon"> </div> 
+        <a className = "navbar-brand" href = "/" >
+          <img src = {logo_horizontal} className = "App-logo large"alt = "logo" / >
+          <img src = {logo} className = "App-logo small" alt = "logo" / >
+        </a> 
+      </nav>
 
-      <
-      nav className = "navbar" >
-      <
-      div id = "menu-button"
-      className = "fa-icon" > < /div> <
-      a className = "navbar-brand"
-      href = "/" >
-      <
-      img src = {
-        logo_horizontal
-      }
-      className = "App-logo large"
-      alt = "logo" / >
-      <
-      img src = {
-        logo
-      }
-      className = "App-logo small"
-      alt = "logo" / >
-      <
-      /a> <
-      /nav>
-
-      <
-      div id = "sidebar"
-      className = "show" >
-      <
-      SourcesForm loading = {
-        this.state.loadingDataFromSourcesForm
-      }
-      sendDataToApp = {
-        this.handleDataFromSourcesForm
-      } >
-      <
-      /SourcesForm> <
-      SourcesList sendDataToApp = {
-        this.handleDataFromSourcesList
-      }
-      sources = {
-        this.state.sources
-      } >
-      <
-      /SourcesList> <
-      /div> <
-      div className = "container" >
-      <
-      div className = "news" > {
-        news
-      } <
-      /div> <
-      /div> <
-      /div>
+      <div id = "sidebar" className = "show" >
+        <SourcesForm 
+          loading = {
+            this.state.loadingDataFromSourcesForm
+          }
+          sendDataToApp = {
+            this.handleDataFromSourcesForm
+          } 
+        /> 
+        <SourcesList 
+          sendDataToApp = {this.handleDataFromSourcesList}
+          sources = {this.state.sources}
+        />
+      </div> 
+      <div className = "container" >
+      <div className = "news" > {news} </div> 
+      </div> 
+    </div>
     );
   }
 
