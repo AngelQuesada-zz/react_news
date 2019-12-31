@@ -12,6 +12,15 @@ import './js/custom'
 import SourcesForm from './components/SourcesForm';
 import SourcesList from './components/SourcesList';
 
+console.log(process.env.NETLIFY)
+
+if (process.env.NETLIFY === 'true') {
+  console.log('Parece que esa variable está en TRUE')
+}else{
+  console.log('Parece que esa variable está en FALSE o no está');
+}
+
+
 class App extends Component {
 
   constructor(props) {
