@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+# react_news
 
-You can use the [editor on GitHub](https://github.com/AngelQuesada/react_news/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+  
+  
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![alt text](https://github.com/AngelQuesada/react_news/blob/master/src/media/images/git_preview.jpg?raw=true)
 
-### Markdown
+  
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Page preview: <a href="https://react-news-best-secret.netlify.com" target="_blank">https://react-news-best-secret.netlify.com</a>
 
-```markdown
-Syntax highlighted code block
+  
 
-# Header 1
-## Header 2
-### Header 3
+React APP made for getting news with the google api news.
 
-- Bulleted
-- List
+This app is made without any library. Only CSS, and vanilla JS.
 
-1. Numbered
-2. List
+For this APP I used:
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AngelQuesada/react_news/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- <a href="https://newsapi.org/s/google-news-api" target="_blank">Google News API</a>
